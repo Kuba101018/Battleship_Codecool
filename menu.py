@@ -1,13 +1,27 @@
-import time
-from clint.textui import colored
-import pyfiglet
 import sys
+import time
+
+import pyfiglet
+from clint.textui import colored
 
 
 def welcome():
     welcome_caption = pyfiglet.figlet_format("WELCOME IN BATTLESHIP !", font="slant")
     print(colored.red(welcome_caption))
     time.sleep(1)
+
+
+def about(): 
+    welcome_caption = pyfiglet,figlet_format("ABOUT BATTLESHIP", font="slant") 
+    print(colored.red(welcome_caption))
+    print("""Battleship (also known as Battleships or Sea Battle) is a strategy type guessing game for two players. 
+    It is played on ruled grids (paper or board) on which each player's fleet of warships are marked.
+     The locations of the fleets are concealed from the other player. 
+     Players alternate turns calling "shots" at the other player's ships, 
+     and the objective of the game is to destroy the opposing player's fleet.
+        """)
+    confirm = input("press any key to continue")
+    get_game_mode()
 
 
 def display_instructions():
@@ -39,6 +53,7 @@ def get_game_mode():
         3. AI vs AI
     Instructions:
         4. Display legend
+        5. About battleship
             """)
     while True:
         player_input = input("Choose a game mode typing an option from one to three: ")
@@ -51,12 +66,17 @@ def get_game_mode():
             except ValueError:
                 print("Please enter a number! Choose from 1-4: ")
                 continue
-            if game_mode < 1 or game_mode > 4:
+            if game_mode < 1 or game_mode > 5:
                 print("Wrong choice. Please choose option between 1-4")
                 continue
             if game_mode == 4:
                 display_instructions()
                 get_game_mode()
+            if game_mode == 5:
+                about()
+
+
+
             else:
                 return game_mode
 
@@ -73,3 +93,4 @@ def get_player_names(game_mode):
         players.append(input("First player, enter your name: "))
         players.append(input("Second player, enter your name: "))
     return players
+
